@@ -95,9 +95,6 @@ export DISPLAY=${XVFB_DISPLAY}
 
 x11vnc -bg -display ${XVFB_DISPLAY} -rfbport 5900
 
-#host with websockify
-websockify -D --web=/usr/share/novnc/ ${noVncPort} localhost:5900
-
 # Replace Startup Variables
 MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 echo ":/home/container$ ${MODIFIED_STARTUP}"
