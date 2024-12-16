@@ -88,3 +88,18 @@ echo ":/home/container$ ${MODIFIED_STARTUP}"
 
 # Run the Server
 eval ${MODIFIED_STARTUP}
+
+XVFB_DISPLAY=":99"
+
+# Start the virtual display using Xvfb
+echo "Starting Xvfb on display ${XVFB_DISPLAY}..."
+Xvfb ${XVFB_DISPLAY} -screen 0 1920x1080x24 &
+
+# Export the display so GUI applications use Xvfb
+export DISPLAY=${XVFB_DISPLAY}
+
+x11vnc -bg -display ${XVFB_DISPLAY} -rfbport 5900
+
+websockify -D --web=/usr/share/novnc/ 6080 localhost:5900
+
+tail -f /dev/null
