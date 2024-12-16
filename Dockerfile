@@ -12,8 +12,10 @@ RUN   dpkg --add-architecture i386 \
       && apt install -y --no-install-recommends gnupg2 numactl tzdata software-properties-common libntlm0 winbind xvfb xauth python3 libncurses5:i386 libncurses6:i386 libsdl2-2.0-0 libsdl2-2.0-0:i386
 
 
-# Install noVNC, x11vnc, xvfb, websockify and xdotool
-RUN apt -y install xvfb x11vnc novnc python3-websockify python3-numpy xdotool tesseract-ocr imagemagick
+# Install noVNC, x11vnc, xvfb, websockify
+RUN apt -y install x11vnc novnc python3-websockify python3-numpy
+
+RUN apt install -y xdotool
 
 
 
