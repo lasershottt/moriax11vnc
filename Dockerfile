@@ -15,8 +15,6 @@ RUN   dpkg --add-architecture i386 \
 # Install noVNC, x11vnc, xvfb, websockify
 RUN apt -y install x11vnc novnc python3-websockify python3-numpy
 
-RUN apt install -y xdotool
-
 
 
 RUN   cd /tmp/ \
