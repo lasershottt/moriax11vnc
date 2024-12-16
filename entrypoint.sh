@@ -82,13 +82,8 @@ for trick in $WINETRICKS_RUN; do
         winetricks -q $trick
 done
 
-# Replace Startup Variables
-MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
-echo ":/home/container$ ${MODIFIED_STARTUP}"
 
-# Run the Server
-eval ${MODIFIED_STARTUP}
-
+# start noVnc
 XVFB_DISPLAY=":99"
 
 # Start the virtual display using Xvfb
@@ -100,6 +95,12 @@ export DISPLAY=${XVFB_DISPLAY}
 
 x11vnc -bg -display ${XVFB_DISPLAY} -rfbport 5900
 
+#host with websockify
 websockify -D --web=/usr/share/novnc/ 6080 localhost:5900
 
-tail -f /dev/null
+# Replace Startup Variables
+MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
+echo ":/home/container$ ${MODIFIED_STARTUP}"
+
+# Run the Server
+eval ${MODIFIED_STARTUP}

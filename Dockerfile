@@ -12,8 +12,10 @@ RUN   dpkg --add-architecture i386 \
       && apt install -y --no-install-recommends gnupg2 numactl tzdata software-properties-common libntlm0 winbind xvfb xauth python3 libncurses5:i386 libncurses6:i386 libsdl2-2.0-0 libsdl2-2.0-0:i386
 
 
-# Install noVNC
-RUN apt -y install xvfb x11vnc novnc python3-websockify python3-numpy 
+# Install noVNC, x11vnc, xvfb, websockify and xdotool
+RUN apt -y install xvfb x11vnc novnc python3-websockify python3-numpy xdotool tesseract-ocr imagemagick
+
+
 
 RUN   cd /tmp/ \
       && curl -sSL https://github.com/gorcon/rcon-cli/releases/download/v0.10.3/rcon-0.10.3-amd64_linux.tar.gz > rcon.tar.gz \
