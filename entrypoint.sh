@@ -93,7 +93,7 @@ Xvfb ${XVFB_DISPLAY} -screen 0 1920x1080x24 &
 # Export the display so GUI applications use Xvfb
 export DISPLAY=${XVFB_DISPLAY}
 
-x11vnc -bg -display ${XVFB_DISPLAY} -rfbport 5900
+x11vnc -bg -display ${XVFB_DISPLAY} -forever -rfbport 5900
 
 # Replace Startup Variables
 MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
